@@ -12,11 +12,44 @@ This is a w.i.p class assignment
 
 here shall be inserted something akin to an abstract
 
-## Full Overview
+## overview
 
 here shall be inserted information about the following sections and, if possible, a table of contents
 
-### 8-bit operation codes
+### Basic information
+
+- Bits: 32
+- Maximum number of operands: 2
+- Type: Register–Memory
+- Design: RISC
+- Number of registers: 8
+- Instruction encoding: variable (8 to 48 bits)
+
+#### Useful literature
+
+<p>
+DISCLAIMER: Under section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, teaching, education, scholarship and research. Fair use is a use permitted by the copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favour of fair use.
+</p>
+
+[PATTERSON, Computer Organization and Design](http://home.ustc.edu.cn/~louwenqi/reference_books_tools/Computer_Organization_and_Design_3Rd.pdf)
+
+[BRYANT, Computer Systems (2002)](http://gec.di.uminho.pt/DISCIP/LEI/ac0708/te%C3%B3ricas/capiv.pdf)
+
+[BRYANT, Computer Systems (2015)](http://www.csapp.cs.cmu.edu/2e/ch4-preview.pdf)
+
+[BISTRICEANU, CPU Implementation](http://www.cs.iit.edu/~virgil/cs470/Book/chapter5.pdf)
+
+[DAMIAN, Logic Gates - Building an ALU](http://www.csc.villanova.edu/~mdamian/Past/csc2400fa13/assign/ALU.html)
+
+[SCHMALZ, Organization of Computer Systems](https://www.cise.ufl.edu/~mssz/CompOrg/CDA-lang.html)
+
+<hr>
+
+### Instruction encoding
+
+This section will discuss how instructions in this architecture are implemented.
+
+### 8-bits operation code
 
 The eight most-significant bits read from `ins_mem` (from bit **47** to bit **40**) at `pc` will always be used as the operation code.
 
@@ -61,9 +94,9 @@ The eight most-significant bits read from `ins_mem` (from bit **47** to bit **40
   </table>
 </div>
 
-### 32-bit ModR/M values
+### 8-bits ModR/M value
 
-The ModR/M byte is used to determine the operands of an instruction and is composed of the following fields:
+The ModR/M byte is used to determine the operands of some instruction and is composed of the following fields:
 
 insert image here
 

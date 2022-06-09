@@ -24,6 +24,7 @@ html,
   background-color: $bg-color;
   color: $text-color;
   text-align: justify;
+  word-wrap: break-word;
 
   * {
     margin: 0;
@@ -43,6 +44,12 @@ html,
 
   strong {
     font-weight: 700;
+  }
+
+  dl,
+  ul,
+  ol {
+    list-style: inside square;
   }
 
   h2,
