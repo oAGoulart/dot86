@@ -63,6 +63,8 @@ The eight most-significant bits read from `ins_mem` (from bit **47** to bit **40
         <th>mnemonic</th>
         <th>op1</th>
         <th>op2</th>
+        <th>sz</th>
+        <th>desc</th>
       </tr>
     </thead>
     <tbody>
@@ -71,24 +73,32 @@ The eight most-significant bits read from `ins_mem` (from bit **47** to bit **40
         <td>ADD</td>
         <td>r</td>
         <td>r/m</td>
+        <td>2:6</td>
+        <td>adds <strong>r</strong> and <strong>r/m</strong>, stores at <strong>r</strong></td>
       </tr>
       <tr>
         <td>01</td>
         <td>ADD</td>
         <td>r/m</td>
         <td>r</td>
+        <td>2:6</td>
+        <td>adds <strong>r/m</strong> and <strong>r</strong>, stores at <strong>r/m</strong></td>
       </tr>
       <tr>
         <td>02</td>
         <td>ADD</td>
         <td>RA</td>
         <td>imm8</td>
+        <td>2</td>
+        <td>adds <strong>RA</strong> and <strong>imm8</strong>, stores at <strong>RA</strong></td>
       </tr>
       <tr>
         <td>03</td>
         <td>ADD</td>
         <td>RA</td>
         <td>imm32</td>
+        <td>5</td>
+        <td>adds <strong>RA</strong> and <strong>imm32</strong>, stores at <strong>RA</strong></td>
       </tr>
     </tbody>
   </table>
