@@ -3,7 +3,7 @@ description: wip.
 url: https://oAGoulart.github.io/dot86
 remote_theme: oAGoulart/lesta
 #theme: lesta
-permalink: /
+baseurl: /dot86
 plugins:
   - jekyll-seo-tag
 
