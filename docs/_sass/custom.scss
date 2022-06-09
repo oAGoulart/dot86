@@ -1,0 +1,224 @@
+@charset 'utf-8';
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Urbanist&family=Source+Code+Pro&display=swap');
+
+$bg-color: #fafafa;
+$text-color: #6e6e6e;
+$card-bg: #f0f0f0;
+$card-shadow: #888888;
+$tab-color: #c7c7c7;
+$tag-color: #feffde;
+
+$primary: #00ffae;
+$secundary: #353535;
+
+.content {
+  display: flex;
+  width: 70vw;
+}
+
+body,
+html,
+.content,
+.page {
+  background-color: $bg-color;
+  color: $text-color;
+  text-align: justify;
+
+  * {
+    margin: 0;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+  }
+
+  code, kbd, pre {
+    background-color: $card-bg;
+    color: $red;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align: left;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    background-color: $primary;
+    color: $secundary;
+    font-family: 'Cabin', sans-serif;
+    margin: 1rem 0;
+    padding: 6px 12px;
+    text-align: left;
+    width: fit-content;
+
+    &::after {
+      display: block;
+      background-color: $primary;
+      content: "";
+      height: 6px;
+      position: absolute;
+      width: 70vw;
+    }
+  }
+
+  h1 {
+    color: $secundary;
+    font-family: 'Cabin', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin: 1rem auto;
+  }
+
+  h2 {
+    background-color: $secundary;
+    color: $primary;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    margin: 1rem auto;
+    text-align: center;
+
+    &::after {
+      background-color: $secundary;
+      height: 8px;
+      left: 25vw;
+      width: 50vw;
+    }
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 26px;
+    font-weight: 300;
+  }
+
+  h4 {
+    font-size: 22px;
+    font-weight: 200;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  table,
+  td,
+  th {
+    border: none;
+  }
+
+  .table-container {  
+    margin: 2rem auto;
+  }
+
+  .table-styled {
+    display: block;
+    border-collapse: separate;
+    border-spacing: 0;
+    max-width: 70vw;
+    overflow: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+
+    * {
+      font-family: 'Cabin', sans-serif;
+      font-size: 16px;
+    }
+
+    thead tr {
+      background-color: transparent;
+      color: $primary;
+      text-align: left;
+
+      th {
+        background-color: $secundary;
+        border-bottom: 3px solid $secundary;
+
+        &.hollow {
+          background-color: $bg-color;
+          color: $text-color;
+
+          &:not(:last-child) {
+            border-right: 1px solid $primary;
+          }
+        }
+      }
+
+      &:first-child th {
+        &:first-child {
+          border-top-left-radius: 10px;
+        }
+        
+        &:last-child {
+          border-top-right-radius: 10px;
+        }
+      }
+    }
+
+    th,
+    td {
+      padding: 8px 16px;
+
+      &:first-child {
+        border-left: 3px solid $secundary;
+      }
+      
+      &:last-child {
+        border-right: 3px solid $secundary;
+      }
+    }
+  
+    tbody tr {
+      td {
+        background-color: $bg-color;
+        border-right: 1px solid $primary;
+
+        &.hollow {
+          border-right: 3px solid $secundary;
+        }
+      }
+   
+      &.odd {
+        td {
+          background-color: $card-bg;
+        }
+      }
+
+      &:nth-of-type(even) {
+        background-color: $bg-color;
+      }
+  
+      &:last-of-type {
+        td {
+          border-bottom: 3px solid $primary;
+        }
+      }
+    }
+  }
+}
+
+div.foot {
+  padding: 1rem;
+  text-align: center;
+
+  * {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+  }
+}
