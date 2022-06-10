@@ -1,0 +1,9 @@
+add RB, RA
+add RB, [SP]
+add RB, [SP+30]
+add RB, [30]
+add [RB], RA
+add [SP+30], RB
+add [30], RB
+add RA, 250
+add RA, 60908070

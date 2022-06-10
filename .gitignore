@@ -1,4 +1,5 @@
 .vscode
+bin/
 docs/_build
 docs/_site
 docs/.sass-cache

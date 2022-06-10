@@ -79,21 +79,13 @@ The eight most-significant bits read from `ins_mem` (from bit **47** to bit **40
       <tr>
         <td>01</td>
         <td>ADD</td>
-        <td>r/m</td>
+        <td>m</td>
         <td>r</td>
         <td>2:6</td>
-        <td>adds <strong>r/m</strong> and <strong>r</strong>, stores at <strong>r/m</strong></td>
+        <td>adds <strong>m</strong> and <strong>r</strong>, stores at <strong>m</strong></td>
       </tr>
       <tr>
         <td>02</td>
-        <td>ADD</td>
-        <td>RA</td>
-        <td>imm8</td>
-        <td>2</td>
-        <td>adds <strong>RA</strong> and <strong>imm8</strong>, stores at <strong>RA</strong></td>
-      </tr>
-      <tr>
-        <td>03</td>
         <td>ADD</td>
         <td>RA</td>
         <td>imm32</td>

@@ -8,32 +8,45 @@
 
 namespace dot86 {
 
+class Instruction;
+
 std::string string_upper(const std::string& str)
 {
   std::string upper;
   for (auto c = str.begin(); c != str.end(); c++)
-    upper += tolower(*c);
+    upper += toupper(*c);
   return upper;
+}
+
+std::string string_trim(const std::string& str)
+{
+  size_t first = str.find_first_not_of(' ');
+  if (first == std::string::npos)
+      return str;
+  size_t last = str.find_last_not_of(' ');
+  return str.substr(first, (last - first + 1));
 }
 
 class Operand {
 public:
   Operand(const std::string& operand) :
-    disp_(0), regDigit_(-1), dispSize_('\0'), type_('\0'), isUsed_(true)
+    regDigit_(-1), dispSize_('\0'), type_('\0'), isUsed_(true)
   {
     if (operand.empty())
       isUsed_ = false;
     else {
-      std::smatch m;
-      std::regex e("(\\[?) *([a-zA-Z]{2,})? *\\+? *([\\d]*)? *(\\]?)");
-      std::regex_match(operand, m, e);
-      reg_ = string_upper(m[2]);
-      disp_ = m[3];
+      auto s = string_trim(operand);
+      std::smatch ms;
+      std::regex e("(\\[?)([A-Za-z]{2,}| *)\\+?([0-9]*)(\\]?)");
+
+      std::regex_search(s, ms, e);
+      reg_ = ms[2];
+      disp_ = ms[3];
 
       FindDispSize_();
       FindRegDigit_();
-      if (m[1] == "[") {
-        if (m[4] == "]")
+      if (ms[1] == "[") {
+        if (ms[4] == "]")
           type_ = 'm';
         else
           throw std::runtime_error("Bad operand format");
@@ -75,7 +88,7 @@ public:
     return isUsed_;
   }
   
-  friend constexpr bool operator==(const Operand& l, const Operand& r)
+  friend bool operator==(const Operand& l, const Operand& r)
   {
     return (l.reg_ == r.reg_ && l.disp_ == r.disp_);
   }
@@ -92,11 +105,13 @@ private:
   char type_;
   bool isUsed_;
 
+  friend Instruction;
+
   void FindDispSize_()
   {
     if (!disp_.empty()) {
       disp32_ = stol(disp_, nullptr, 0);
-      if (disp32_ <= std::numeric_limits<int8_t>::max())
+      if (disp32_ <= std::numeric_limits<int8_t>::max() && !reg_.empty())
         dispSize_ = 'b';
       else if (disp32_ <= std::numeric_limits<int32_t>::max())
         dispSize_ = 'd';
@@ -107,7 +122,7 @@ private:
   {
     if (reg_.size() > 1) {
       if (reg_.at(0) == 'R')
-        regDigit_ = 52 - reg_.at(1) - 1;
+        regDigit_ = reg_.at(1) - 41;
       else if (reg_.at(1) == 'P')
         regDigit_ = reg_.at(0) + reg_.at(1) + 1;
       else if (reg_.at(1) == 'I')
@@ -115,11 +130,11 @@ private:
       else
         throw std::runtime_error("Could not find register digit");
       
-      regDigit_ &= 0xF;
+      regDigit_ &= 0x7;
       if (regDigit_ > 5)
         regDigit_--;
     }
-    else if (type_ == 'm' && dispSize_ != '\0')
+    else if (!disp_.empty() && dispSize_ != '\0')
       regDigit_ = 5;
   }
 };
@@ -129,19 +144,12 @@ public:
   Instruction(const std::string& mnemonic, const std::string& l, const std::string& r) :
     bytes_(), mnemonic_(mnemonic), left_(l), right_(r)
   {
-    if (left_.GetType() == 'm') {
-      auto t = left_;
-      left_ = right_;
-      right_ = t;
-    }
-
     auto op = operations_.begin();
     for (; op != operations_.end(); op++) {
       if (mnemonic_ == op->mnemonic_) {
         if (op->type_ == 's') {
           if (left_ == Operand(op->left_)) {
-            if (op->right_ == "imm8" && right_.GetDispSize() == 'b' ||
-                op->right_ == "imm32" && right_.GetDispSize() == 'd') {
+            if (op->right_ == "imm32" && right_.GetDispSize() == 'd') {
               opcode_ = op->opcode_;
               break;
             }
@@ -159,9 +167,17 @@ public:
     if (op == operations_.end())
       throw std::runtime_error("Unable to find instruction");
 
+    if (left_.GetType() == 'm') {
+      auto t = left_;
+      left_ = right_;
+      right_ = t;
+    }
+
     bytes_.emplace_back(opcode_);
-    if (op->type_ == 'r')
+    if (op->type_ == 'r') {
+      FindModRm_();
       bytes_.emplace_back(modrm_);
+    }
     
     auto t = right_.GetDispSize();
     if (t == 'b')
@@ -202,10 +218,9 @@ private:
   };
 
   inline static const std::vector<Operation> operations_ = {
-    { 0x0, 'r', "add", "r", "rmi" },
-    { 0x1, 'r', "add", "rm", "r" },
-    { 0x2, 's', "add", "RA", "imm8" },
-    { 0x3, 's', "add", "RA", "imm32" }
+    { 0x0, 'r', "ADD", "r", "rm" },
+    { 0x1, 'r', "ADD", "m", "r" },
+    { 0x2, 's', "ADD", "RA", "imm32" }
     // TODO: add instructions here
   };
 
@@ -221,11 +236,29 @@ private:
     uint8_t m = 0;
     if (right_.GetType() == 'r')
       m = 3;
-    else if (right_.GetType() == 'm' && right_.GetDispSize() != '\0')
+    else if (right_.GetType() == 'm' && right_.GetDispSize() != '\0' && !right_.reg_.empty())
       m = (right_.GetDispSize() == 'b') ? 1 : 2;
     
-    modrm_ = (m << 6) | (right_.GetRegDigit() << 3) | left_.GetRegDigit();
+    modrm_ = (m << 6) | (left_.GetRegDigit() << 3) | right_.GetRegDigit();
   }
 };
+
+std::vector<uint8_t> assembly(std::string& code)
+{
+  std::smatch ms;
+  std::regex e("([\\w\\d]{2,})([^\\,\20]*)\\,?([^\20]*)");
+  std::vector<uint8_t> out;
+
+  while (regex_search(code, ms, e)) {
+    Instruction inst(string_upper(ms[1].str()),
+                     string_upper(ms[2].str()),
+                     string_upper(ms[3].str()));
+    auto v = inst.GetBytes();
+    for (auto i = v.begin(); i != v.end(); i++)
+      out.emplace_back(*i);
+    code = ms.suffix().str();
+  }
+  return out;
+}
 
 }
