@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Urbanist&family=Source+Code+Pro&display=swap');
+
+$family-serif: 'Cabin', sans-serif;
+$family-sans: 'Urbanist', sans-serif;;
+$family-monospace: 'Source Code Pro', monospace;
+$font-code: $family-monospace;
+
+$black: hsl(0, 0%, 0%);
+$white: hsl(0, 0%, 100%);
+$grey: hsl(0, 0%, 78%);
+$grey-dark: hsl(0, 0%, 42%);
+$grey-darker: hsl(0, 0%, 29%);
+$grey-lighter: hsl(0, 0%, 94%);
+$grey-lightest: hsl(0, 0%, 96%);
+$grey-superlight: hsl(0, 0%, 98%);
+$yellow: hsl(53, 100%, 50%);
+$pink: hsl(300, 100%, 50%);
+$blue: hsl(205, 84%, 50%);
+$cyan: hsl(180, 100%, 35%);
+$green: hsl(115, 67%, 38%);
+$blue-dark: hsl(205, 53%, 25%);
+$green-light: hsl(131, 65%, 58%);
+$red: hsl(5, 83%, 50%);
+$orange: hsl(41, 79%, 50%);
+$greenish: hsl(78, 36%, 53%);
+
+$primary: #00ffae;
+$primary-invert: $grey-superlight;
+$primary-light: $grey;
+$primary-dark: $black;
+
+$secondary: #353535;
+
+$link: #8cc4ff;
+$link-invert: $grey-darker;
+
+$text: $grey-darker;
+$background: $grey-superlight;
+$border: $grey;
+$quotes: $grey-lighter;
+$foreground: $grey-dark;
+
+$bg-color: #fafafa;
+$text-color: #6e6e6e;
+$card-bg: #f0f0f0;
+$card-shadow: #888888;
+$tab-color: #c7c7c7;
+$tag-color: #feffde;
+$data-border: #8cc4ff;
