@@ -16,15 +16,32 @@ html,
 
   * {
     margin: 0;
-    font-family: 'Urbanist', sans-serif;
+    font-family: $family-sans;
     font-size: 18px;
     font-weight: 100;
   }
 
-  code, kbd, pre {
+  dl {
+    margin-left: 3rem;
+
+    dd {
+      font-size: 12px;
+      margin-left: 5rem;
+    }
+
+    dt {border-bottom: 2px solid #8cc4ff;
+      font-size: 12px;
+      font-weight: 800;
+      width: 5rem;
+    }
+  }
+
+  code,
+  kbd,
+  pre {
     background-color: $card-bg;
     color: $red;
-    font-family: 'Source Code Pro', monospace;
+    font-family: $family-monospace;
     font-size: 1rem;
     font-weight: 100;
     text-align: left;
@@ -37,7 +54,17 @@ html,
   dl,
   ul,
   ol {
-    list-style: inside square;
+    list-style: none;
+
+    li {
+      &::before {
+        color: $link;
+        content: "\2756";
+        font-family: $family-serif;
+        font-weight: 900;
+        margin: 0 0.6rem;
+      }
+    }
   }
 
   h2,
@@ -47,7 +74,7 @@ html,
   h6 {
     background-color: $primary;
     color: $secondary;
-    font-family: 'Cabin', sans-serif;
+    font-family: $family-serif;
     margin: 2rem 0;
     padding: 6px 12px;
     text-align: left;
@@ -65,7 +92,7 @@ html,
 
   h1 {
     color: $secondary;
-    font-family: 'Cabin', sans-serif;
+    font-family: $family-serif;
     font-size: 3rem;
     text-align: center;
     text-transform: uppercase;
@@ -76,7 +103,7 @@ html,
   h2 {
     background-color: $secondary;
     color: $primary;
-    font-family: 'Source Code Pro', monospace;
+    font-family: $family-monospace;
     font-size: 34px;
     font-weight: 600;
     letter-spacing: 6px;
@@ -131,13 +158,13 @@ html,
     white-space: nowrap;
 
     * {
-      font-family: 'Cabin', sans-serif;
+      font-family: $family-serif;
       font-size: 16px;
     }
 
     thead tr {
       background-color: transparent;
-      color: $primary;
+      color: $link;
       text-align: left;
 
       th {
@@ -149,7 +176,7 @@ html,
           color: $text-color;
 
           &:not(:last-child) {
-            border-right: 1px solid $primary;
+            border-right: 1px solid $link;
           }
         }
       }
@@ -181,7 +208,7 @@ html,
     tbody tr {
       td {
         background-color: $bg-color;
-        border-right: 1px solid $primary;
+        border-right: 1px solid $link;
 
         &.hollow {
           border-right: 3px solid $secondary;
@@ -200,7 +227,7 @@ html,
   
       &:last-of-type {
         td {
-          border-bottom: 3px solid $primary;
+          border-bottom: 3px solid $link;
         }
       }
     }
@@ -238,11 +265,13 @@ html,
     }
 
     .bit {
+      background-color: $card-bg;
       border-top: 4px solid $data-border;
       border-bottom: 4px solid $data-border;
       border-right: 2px solid $data-border;
-      color: $link;
+      color: $secondary;
       display: block;
+      font-family: $family-serif;
       height: 3rem;
       width: 3rem;
 
@@ -269,7 +298,7 @@ html,
       p {
         font-size: 1rem;
         font-weight: 700;
-        font-family: 'Cabin', sans-serif;
+        font-family: $family-serif;
         margin: 0;
         margin-top: 0.25rem;
         text-align: center;
@@ -277,7 +306,7 @@ html,
         .rep {
           font-size: 0.8rem;
           font-weight: 100;
-          font-family: 'Cabin', sans-serif;
+          font-family: $family-serif;
         }
       }
 
@@ -298,7 +327,7 @@ div.foot {
   text-align: center;
 
   * {
-    font-family: 'Urbanist', sans-serif;
+    font-family: $family-sans;
     font-size: 14px;
     font-weight: 100;
   }
