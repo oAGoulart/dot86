@@ -8,9 +8,10 @@ $card-bg: #f0f0f0;
 $card-shadow: #888888;
 $tab-color: #c7c7c7;
 $tag-color: #feffde;
+$data-border: #8cc4ff;
 
 $primary: #00ffae;
-$secundary: #353535;
+$secondary: #353535;
 
 .content {
   display: flex;
@@ -36,7 +37,7 @@ html,
   code, kbd, pre {
     background-color: $card-bg;
     color: $red;
-    font-family: "Source Code Pro", monospace;
+    font-family: 'Source Code Pro', monospace;
     font-size: 1rem;
     font-weight: 100;
     text-align: left;
@@ -58,9 +59,9 @@ html,
   h5,
   h6 {
     background-color: $primary;
-    color: $secundary;
+    color: $secondary;
     font-family: 'Cabin', sans-serif;
-    margin: 1rem 0;
+    margin: 2rem 0;
     padding: 6px 12px;
     text-align: left;
     width: fit-content;
@@ -76,27 +77,27 @@ html,
   }
 
   h1 {
-    color: $secundary;
+    color: $secondary;
     font-family: 'Cabin', sans-serif;
     font-size: 3rem;
     text-align: center;
     text-transform: uppercase;
     font-weight: 900;
-    margin: 1rem auto;
+    margin: 2rem auto;
   }
 
   h2 {
-    background-color: $secundary;
+    background-color: $secondary;
     color: $primary;
     font-family: 'Source Code Pro', monospace;
     font-size: 34px;
     font-weight: 600;
     letter-spacing: 6px;
-    margin: 1rem auto;
+    margin: 3rem auto;
     text-align: center;
 
     &::after {
-      background-color: $secundary;
+      background-color: $secondary;
       height: 8px;
       left: 25vw;
       width: 50vw;
@@ -153,8 +154,8 @@ html,
       text-align: left;
 
       th {
-        background-color: $secundary;
-        border-bottom: 3px solid $secundary;
+        background-color: $secondary;
+        border-bottom: 3px solid $secondary;
 
         &.hollow {
           background-color: $bg-color;
@@ -182,11 +183,11 @@ html,
       padding: 8px 16px;
 
       &:first-child {
-        border-left: 3px solid $secundary;
+        border-left: 3px solid $secondary;
       }
       
       &:last-child {
-        border-right: 3px solid $secundary;
+        border-right: 3px solid $secondary;
       }
     }
   
@@ -196,7 +197,7 @@ html,
         border-right: 1px solid $primary;
 
         &.hollow {
-          border-right: 3px solid $secundary;
+          border-right: 3px solid $secondary;
         }
       }
    
@@ -217,6 +218,95 @@ html,
       }
     }
   }
+
+  .data {
+    background-color: $bg-color;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    margin: 0 auto;
+
+    .textual {
+      display: block;
+      height: auto;
+      width: 20vw;
+
+      .highlight {
+        background-color: $card-bg;
+        overflow-x: auto;
+      }
+
+      &.binary {
+        margin-left: 10rem;
+
+        &::after {
+          color: $data-border;
+          content: "\1F80A";
+          font-size: 3rem;
+          left: -6rem;
+          position: relative;
+          top: -55%;
+        }
+      }
+    }
+
+    .bit {
+      border-top: 4px solid $data-border;
+      border-bottom: 4px solid $data-border;
+      border-right: 2px solid $data-border;
+      display: block;
+      height: 3rem;
+      width: 3rem;
+
+      &.two {
+        width: 6rem;
+      }
+
+      &.three {
+        width: 9rem;
+      }
+
+      &.four {
+        width: 12rem;
+      }
+
+      &.five {
+        width: 15rem;
+      }
+      
+      &.six {
+        width: 18rem;
+      }
+
+      p {
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: 'Cabin', sans-serif;
+        margin: 0;
+        margin-top: 0.25rem;
+        text-align: center;
+
+        .rep {
+          font-size: 0.8rem;
+          font-weight: 100;
+          font-family: 'Cabin', sans-serif;
+        }
+      }
+
+      &:first-child {
+        border-left: 4px solid $data-border;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+      }
+
+      &:last-child {
+        border-right: 4px solid $data-border;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+      }
+    }
+  }
+
 }
 
 div.foot {
