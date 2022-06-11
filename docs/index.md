@@ -4,7 +4,7 @@ layout: default
 
 {% include head.html %}
 
-# A 32-bit variable instruction encoding RISC ISA
+# A 32-bit variable encoding RISC architecture
 
 ## overview
 
@@ -132,7 +132,7 @@ imm32
 
 #### 8-bits ModR/M value
 
-The ModR/M byte is used to determine the operands of some instructions, those that don't use the ModR/M byte either have a fixed register as operand number one or they do not interact with the `reg_file` and `ram` components. This byte is composed of the following fields:
+The ModR/M byte is used to determine the operands of some instructions, those that don't use the ModR/M byte either have a fixed register as operand number one or they do not interact with the `reg_file` and `ra_mem` components. This byte is composed of the following fields:
 
 <div class="data">
   <div class="bit two">
