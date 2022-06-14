@@ -1,6 +1,7 @@
 title: dot86
 description: wip.
 remote_theme: oAGoulart/lesta
+baseurl: /dot86
 #theme: lesta
 plugins:
   - jekyll-seo-tag
