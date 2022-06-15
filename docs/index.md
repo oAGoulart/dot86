@@ -41,6 +41,10 @@ This architecture can support up to 256 instructions, all instruction are limite
 
 [SCHMALZ, Organization of Computer Systems](https://www.cise.ufl.edu/~mssz/CompOrg/CDA-lang.html)
 
+[HANSON, A VHDL Conversion Tool for Logic Equations with Embedded D Latches](https://projects.ncsu.edu/wcae//WCAE1/hanson.pdf)
+
+[VISUAL6502.ORG, MOS 6502](http://www.visual6502.org/JSSim/index.html)
+
 ### Instruction encoding
 
 This section will discuss how instructions in this architecture are implemented. In the [repository](https://github.com/oAGoulart/dot86), you will find an assembly encoder written in `C++`, with it you should be able to generate a binary code compatible with this architecture, for reference you can try it out with the examples found in the same repository.
